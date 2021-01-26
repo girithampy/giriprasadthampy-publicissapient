@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Col, Container, Row } from 'reactstrap';
 
 import axios from 'axios';
 
@@ -28,8 +27,8 @@ export const Home = (props) => {
   const [flights, setFlights] = useState(props.launches || []);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const qs = createQueryString(router.query);
+  const fetchLaunches = async (filter) => {
+    const qs = createQueryString(filter);
     setLoading(true)
     axios.get(`https://api.spaceXdata.com/v3/launches?limit=${limit}&${qs}`).then(res => {
       setFlights(res.data)
@@ -38,27 +37,29 @@ export const Home = (props) => {
       console.log('Error :', err);
       setLoading(false)
     })
-  }, [filter])
+  }
 
   const onFilterChange = (filter) => {
     setFilter(filter);
     const qs = createQueryString(filter);
     router.push(`/?${qs}`, undefined, { shallow: true });
+    fetchLaunches(filter);
   }
 
-  return (<Container fluid={true} className={styles.homeContainer}>
-    <Head title="SpaceX" description="List and browse all launches by SpaceX program." />
-    <Row>
-      <Col><h1>SpaceX Launch Programs</h1></Col>
-    </Row>
-    <Row xs="12" sm="12">
-      <Col xs="12" sm="4" md="3">
-        <Filter filter={filter} onFilterChange={onFilterChange} />
-      </Col>
-      <Col xs="12" sm="8" md="9">
-        <Row xs="12" sm="8">
+  return (<div className={styles.homeContainer}>
+    <div className={styles.homeInnerContainer}>
+      <Head title="SpaceX" description="List and browse all launches by SpaceX program." />
+      <div className={styles.titleContainer}>
+        <h1>SpaceX Launch Programs</h1>
+      </div>
+      <div className={styles.bodyContainer}>
+
+        <div className={styles.filterSectionContainer}>
+          <Filter filter={filter} onFilterChange={onFilterChange} />
+        </div>
+        <div className={styles.listContainer}>
           {!loading && flights.map((flight, i) =>
-            <Col xs="12" sm="6" md="3" key={i}>
+            <div className={styles.listItemContainer} key={i}>
               <LaunchItem
                 missionName={flight.mission_name}
                 flightNumber={flight.flight_number}
@@ -67,15 +68,15 @@ export const Home = (props) => {
                 launchYear={flight.launch_year}
                 launchSuccess={flight.launch_success === null ? '' : `${flight.launch_success}`}
                 landSuccess={flight.rocket.first_stage.cores[0].land_success === null ? '' : `${flight.rocket.first_stage.cores[0].land_success}`} />
-            </Col>
+            </div>
           )}
-          {!loading && flights.length === 0 && <Col><h4>No Data</h4></Col>}
-          {loading && <Col><h4>Loading...</h4></Col>}
-        </Row>
-      </Col>
-    </Row>
-    <Footer />
-  </Container>)
+          {!loading && flights.length === 0 && <div><h4>No Data</h4></div>}
+          {loading && <div className={styles.loaderContainer}><h4>Loading...</h4></div>}
+        </div>
+      </div>
+      <Footer />
+    </div>
+  </div>)
 };
 
 Home.getInitialProps = async ({ query }) => {

@@ -1,0 +1,25 @@
+.launchItemContainer {
+    /* height: 100%; */
+    width: 100%;
+    background-color: #ffffff;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.launchItemName {
+    color: #545d9d;
+    font-weight: 900;
+}
+.missionIdContainer > label {
+    font-weight: 900;
+    color: #171717;
+}
+
+.infoContainer > label {
+    font-weight: 900;
+    color: #171717;
+}
+.infoContainer > label > span {
+    font-weight: 400;
+    color: #545d9d;
+}

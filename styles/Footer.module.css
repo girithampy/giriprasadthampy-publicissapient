@@ -1,0 +1,12 @@
+.footerContainer {
+    text-align: center;
+    margin-top: 10px;
+}
+.footerContainer > label {
+    font-weight: 900;
+    color: #171717;
+}
+.footerContainer > label > span {
+    font-weight: 400;
+    color: #171717;
+}

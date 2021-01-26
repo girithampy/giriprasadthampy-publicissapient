@@ -1,34 +1,61 @@
 import { useEffect, useState } from 'react'
-
-import {
-    Card, CardImg
-} from 'reactstrap';
+import { Card, Button } from 'reactstrap';
 
 // styles
 import styles from './../styles/Filter.module.css'
 
-const launchYearsFilters = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
-const successfullLaunchesFilters = [true, false];
-const successfullLandingFilters = [true, false];
+const filterConfig = [
+    {
+        filterName: 'launch_year',
+        filterTitle: 'Launch Year',
+        filters: ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    {
+        filterName: 'launch_success',
+        filterTitle: 'Successful Launch',
+        filters: ['true', 'false']
+    },
+    {
+        filterName: 'land_success',
+        filterTitle: 'Successful Landing',
+        filters: ['true', 'false']
+    },
+]
 
-const Filter = () => {
+const Filter = (props) => {
+    const { filter, onFilterChange } = props;
 
-    const [launchYear, setLaunchYear] = useState('');
-    const [successfullLaunch, setSuccessfullLaunch] = useState('');
-    const [successfullLanding, setSuccessfullLanding] = useState('');
+    const applyFilter = (filterName, value) => {
+        let updatedFilter = filter;
+        if (filter[filterName] === value) {
+            delete updatedFilter[filterName];
+        } else {
+            updatedFilter = {
+                ...filter,
+                [filterName]: value
+            }
+        }
 
-    const applyFilter = () => {
-        console.log('Applying filter')
-        console.log(window)
+        onFilterChange(updatedFilter)
     }
     return (<Card className={styles.filterContainer}>
         <div>
             <h3>Filters</h3>
         </div>
-        <h5>Launch Year</h5>
-        <hr />
-        {/* <CardImg top src="https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png" alt="Card image cap" /> */}
-        {/* <Link href="/?launch_success=true&land_success=true&launch_year=2014"><a>Apply Filter</a></Link> */}
+        {filterConfig.map((config, i) => (
+            <div key={i}>
+                <h5>{config.filterTitle}</h5>
+                <hr />
+                <div className={styles.filterSectionWrap}>
+                    {config.filters.map((f, _i) =>
+                        <Button
+                            key={`button${_i}`}
+                            className={filter[config.filterName] === f ? styles.activefilterButton : styles.filterButton}
+                            onClick={() => applyFilter(config.filterName, f)}>{f}</Button>
+                    )}
+                </div>
+            </div>
+        ))}
     </Card>)
 }
 

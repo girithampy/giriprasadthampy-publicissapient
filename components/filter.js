@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react'
-import { Card, Button } from 'reactstrap';
-
 // styles
 import styles from './../styles/Filter.module.css'
 
@@ -38,7 +35,7 @@ const Filter = (props) => {
 
         onFilterChange(updatedFilter)
     }
-    return (<Card className={styles.filterContainer}>
+    return (<div className={styles.filterContainer}>
         <div>
             <h3>Filters</h3>
         </div>
@@ -56,7 +53,7 @@ const Filter = (props) => {
                 </div>
             </div>
         ))}
-    </Card>)
+    </div>)
 }
 
 export default Filter;

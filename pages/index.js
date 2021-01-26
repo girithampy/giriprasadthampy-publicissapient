@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Col, Container, Row } from 'reactstrap';
 
 import axios from 'axios';
 
@@ -46,19 +45,20 @@ export const Home = (props) => {
     router.push(`/?${qs}`, undefined, { shallow: true });
   }
 
-  return (<Container fluid={true} className={styles.homeContainer}>
-    <Head title="SpaceX" description="List and browse all launches by SpaceX program." />
-    <Row>
-      <Col><h1>SpaceX Launch Programs</h1></Col>
-    </Row>
-    <div className={styles.bodyContainer}>
-      <div className={styles.filterSectionContainer}>
-        <Filter filter={filter} onFilterChange={onFilterChange} />
+  return (<div className={styles.homeContainer}>
+    <div className={styles.homeInnerContainer}>
+      <Head title="SpaceX" description="List and browse all launches by SpaceX program." />
+      <div>
+        <h1>SpaceX Launch Programs</h1>
       </div>
-      <div className={styles.listContainer}>
-        {/* <Row> */}
+      <div className={styles.bodyContainer}>
+
+        <div className={styles.filterSectionContainer}>
+          <Filter filter={filter} onFilterChange={onFilterChange} />
+        </div>
+        <div className={styles.listContainer}>
           {!loading && flights.map((flight, i) =>
-            <Col className={styles.listItemContainer} key={i}>
+            <div className={styles.listItemContainer} key={i}>
               <LaunchItem
                 missionName={flight.mission_name}
                 flightNumber={flight.flight_number}
@@ -67,15 +67,15 @@ export const Home = (props) => {
                 launchYear={flight.launch_year}
                 launchSuccess={flight.launch_success === null ? '' : `${flight.launch_success}`}
                 landSuccess={flight.rocket.first_stage.cores[0].land_success === null ? '' : `${flight.rocket.first_stage.cores[0].land_success}`} />
-            </Col>
+            </div>
           )}
-          {!loading && flights.length === 0 && <Col><h4>No Data</h4></Col>}
-          {loading && <Col><h4>Loading...</h4></Col>}
-        {/* </Row> */}
+          {!loading && flights.length === 0 && <div><h4>No Data</h4></div>}
+          {loading && <div><h4>Loading...</h4></div>}
+        </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
-  </Container>)
+  </div>)
 };
 
 Home.getInitialProps = async ({ query }) => {

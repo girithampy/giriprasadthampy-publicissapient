@@ -28,22 +28,16 @@ export const Home = (props) => {
   const [flights, setFlights] = useState(props.launches || []);
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   console.log('props ',props)
-  // },[props]);
-
   useEffect(() => {
-    console.log('In useEffect ')
-    // const qs = createQueryString(router.query);
-    // setLoading(true)
-    // axios.get(`https://api.spaceXdata.com/v3/launches?limit=${limit}&${qs}`).then(res => {
-    //   setFlights(res.data)
-    //   setLoading(false)
-    //   console.log('res.data ', res.data);
-    // }).catch(err => {
-    //   console.log('Error :', err);
-    //   setLoading(false)
-    // })
+    const qs = createQueryString(router.query);
+    setLoading(true)
+    axios.get(`https://api.spaceXdata.com/v3/launches?limit=${limit}&${qs}`).then(res => {
+      setFlights(res.data)
+      setLoading(false)
+    }).catch(err => {
+      console.log('Error :', err);
+      setLoading(false)
+    })
   }, [filter])
 
   const onFilterChange = (filter) => {
@@ -53,18 +47,18 @@ export const Home = (props) => {
   }
 
   return (<Container fluid={true} className={styles.homeContainer}>
-    <Head title="SpaceX" />
+    <Head title="SpaceX" description="List and browse all launches by SpaceX program." />
     <Row>
       <Col><h1>SpaceX Launch Programs</h1></Col>
     </Row>
-    <Row xs="12">
-      <Col xs="12">
+    <Row xs="12" sm="12">
+      <Col xs="12" sm="4" md="3">
         <Filter filter={filter} onFilterChange={onFilterChange} />
       </Col>
-      <Col xs="12">
-        <Row xs="12">
+      <Col xs="12" sm="8" md="9">
+        <Row xs="12" sm="8">
           {!loading && flights.map((flight, i) =>
-            <Col xs="12" key={i}>
+            <Col xs="12" sm="6" md="3" key={i}>
               <LaunchItem
                 missionName={flight.mission_name}
                 flightNumber={flight.flight_number}
@@ -92,16 +86,3 @@ Home.getInitialProps = async ({ query }) => {
 }
 
 export default Home;
-
-// export default React.memo(Home);
-
-// export async function getStaticProps(context) {
-//   console.log('context ',context)
-//   // const qs = createQueryString(query);
-//   const response = await axios.get(`https://api.spaceXdata.com/v3/launches?limit=${limit}`);
-//   return {
-//     props: {
-//       launches: response.data
-//     }, // will be passed to the page component as props
-//   }
-// }

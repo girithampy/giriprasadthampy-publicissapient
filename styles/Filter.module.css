@@ -13,6 +13,7 @@
 }
 
 .filterSectionWrap > button {
+    cursor: pointer;
     width: calc(50% - 20px);
     padding: 10px;
     margin: 10px;

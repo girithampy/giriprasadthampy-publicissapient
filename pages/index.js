@@ -27,8 +27,8 @@ export const Home = (props) => {
   const [flights, setFlights] = useState(props.launches || []);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const qs = createQueryString(router.query);
+  const fetchLaunches = async (filter) => {
+    const qs = createQueryString(filter);
     setLoading(true)
     axios.get(`https://api.spaceXdata.com/v3/launches?limit=${limit}&${qs}`).then(res => {
       setFlights(res.data)
@@ -37,18 +37,19 @@ export const Home = (props) => {
       console.log('Error :', err);
       setLoading(false)
     })
-  }, [filter])
+  }
 
   const onFilterChange = (filter) => {
     setFilter(filter);
     const qs = createQueryString(filter);
     router.push(`/?${qs}`, undefined, { shallow: true });
+    fetchLaunches(filter);
   }
 
   return (<div className={styles.homeContainer}>
     <div className={styles.homeInnerContainer}>
       <Head title="SpaceX" description="List and browse all launches by SpaceX program." />
-      <div>
+      <div className={styles.titleContainer}>
         <h1>SpaceX Launch Programs</h1>
       </div>
       <div className={styles.bodyContainer}>
@@ -70,7 +71,7 @@ export const Home = (props) => {
             </div>
           )}
           {!loading && flights.length === 0 && <div><h4>No Data</h4></div>}
-          {loading && <div><h4>Loading...</h4></div>}
+          {loading && <div className={styles.loaderContainer}><h4>Loading...</h4></div>}
         </div>
       </div>
       <Footer />

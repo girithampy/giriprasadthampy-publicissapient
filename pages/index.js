@@ -51,14 +51,14 @@ export const Home = (props) => {
     <Row>
       <Col><h1>SpaceX Launch Programs</h1></Col>
     </Row>
-    <Row xs="12" sm="12">
-      <Col xs="12" sm="4" md="3">
+    <div className={styles.bodyContainer}>
+      <div className={styles.filterSectionContainer}>
         <Filter filter={filter} onFilterChange={onFilterChange} />
-      </Col>
-      <Col xs="12" sm="8" md="9">
-        <Row xs="12" sm="8">
+      </div>
+      <div className={styles.listContainer}>
+        {/* <Row> */}
           {!loading && flights.map((flight, i) =>
-            <Col xs="12" sm="6" md="3" key={i}>
+            <Col key={i}>
               <LaunchItem
                 missionName={flight.mission_name}
                 flightNumber={flight.flight_number}
@@ -71,9 +71,9 @@ export const Home = (props) => {
           )}
           {!loading && flights.length === 0 && <Col><h4>No Data</h4></Col>}
           {loading && <Col><h4>Loading...</h4></Col>}
-        </Row>
-      </Col>
-    </Row>
+        {/* </Row> */}
+      </div>
+    </div>
     <Footer />
   </Container>)
 };

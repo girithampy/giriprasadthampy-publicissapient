@@ -19,11 +19,6 @@ const LaunchItem = (props) => {
                             ))}
                         </ul>
                     </div>
-                    {/* <div className={styles.infoContainer}>
-                        <label>Launch Year: <span>{launchYear}</span></label>
-                        <label>Successful Launch: <span>{launchSuccess}</span></label>
-                        <label>Successful Landing: <span>{landSuccess}</span></label>
-                    </div> */}
                     <Row xl="12">
                         <Col xl="12" className={styles.infoContainer}><label>Launch Year: <span>{launchYear}</span></label> </Col>
                         <Col xl="12" className={styles.infoContainer}><label>Successful Launch: <span>{launchSuccess}</span></label></Col>

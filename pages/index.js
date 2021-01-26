@@ -58,7 +58,7 @@ export const Home = (props) => {
       <div className={styles.listContainer}>
         {/* <Row> */}
           {!loading && flights.map((flight, i) =>
-            <Col key={i}>
+            <Col className={styles.listItemContainer} key={i}>
               <LaunchItem
                 missionName={flight.mission_name}
                 flightNumber={flight.flight_number}

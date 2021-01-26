@@ -5,9 +5,7 @@ import styles from './../styles/LaunchItem.module.css'
 
 const LaunchItem = (props) => {
     const { imageURL, missionName, flightNumber, missionIds = [], launchYear, launchSuccess, landSuccess } = props;
-    return (<Row xl="12">
-        <Col xl="12">
-            <Card className={styles.launchItemContainer}>
+    return (<Card className={styles.launchItemContainer}>
                 <CardImg top src={imageURL} alt={missionName} />
                 <CardBody>
                     <h6 className={styles.launchItemName}>{missionName} #{flightNumber}</h6>
@@ -25,9 +23,7 @@ const LaunchItem = (props) => {
                         <Col xl="12" className={styles.infoContainer}><label>Successful Landing: <span>{landSuccess}</span></label></Col>
                     </Row>
                 </CardBody>
-            </Card>
-        </Col>
-    </Row>)
+            </Card>)
 }
 
 export default LaunchItem;

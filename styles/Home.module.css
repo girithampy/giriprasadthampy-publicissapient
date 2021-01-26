@@ -15,14 +15,35 @@
     width: 100%;
 }
 .homeContainer > .bodyContainer >.listContainer {
-    /* display: flex;
+    width: 100%;
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap; */
+    flex-wrap: wrap;
+}
+.homeContainer > .bodyContainer >.listContainer > .listItemContainer {
+    width: 100%;
 }
 
 
-/* @media screen and (min-width: 701px) and (max-width: 1024px) {
+@media screen and (min-width: 701px) and (max-width: 1024px) {
     .homeContainer > .bodyContainer {
         flex-direction: row;
     }
-} */
+
+    .homeContainer > .bodyContainer >.filterSectionContainer {
+        width: 30%;
+    }
+    .homeContainer > .bodyContainer >.listContainer {
+        width: 70%;
+    }
+    .homeContainer > .bodyContainer >.listContainer > .listItemContainer {
+        margin-left: 10px;
+        width: calc(50% - 10px);
+    }
+
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1044px) {
+}
+@media screen and (min-width: 1045px) {
+}

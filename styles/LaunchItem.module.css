@@ -1,8 +1,10 @@
 .launchItemContainer {
     width: 100%;
+    height: calc(100% - 15px);
     background-color: #ffffff;
     padding: 15px;
     margin-bottom: 15px;
+
 }
 
 .launchItemName {

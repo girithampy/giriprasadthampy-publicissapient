@@ -1,3 +1,5 @@
+import React from 'react';
+
 // styles
 import styles from './../styles/LaunchItem.module.css'
 
@@ -24,4 +26,4 @@ const LaunchItem = (props) => {
     </div>)
 }
 
-export default LaunchItem;
+export default React.memo(LaunchItem);

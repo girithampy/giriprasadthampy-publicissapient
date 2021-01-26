@@ -1,3 +1,5 @@
+import React from 'react';
+
 // styles
 import styles from './../styles/Filter.module.css'
 
@@ -56,5 +58,5 @@ const Filter = (props) => {
     </div>)
 }
 
-export default Filter;
+export default React.memo(Filter);
 

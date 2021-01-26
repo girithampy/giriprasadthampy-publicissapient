@@ -10,21 +10,16 @@
     flex-wrap: wrap;
 }
 
-.filterButton{
-    /* padding: 15px; */
+.filterSectionWrap > button {
     width: calc(50% - 20px);
-    color : #171717;
-    background-color:  #c5e09b;
     margin: 10px;
+    color : #171717;
     text-align: center;
-    border: 0;    
+    border: 0;
+}
+.filterButton{
+    background-color:  #c5e09b;  
 }
 .activefilterButton{
     background-color: #7dba02;
-    color : #171717;
-    /* padding: 15px; */
-    width: calc(50% - 20px);
-    margin: 10px;
-    text-align: center;
-    border: 0;
 }

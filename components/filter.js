@@ -48,10 +48,10 @@ const Filter = (props) => {
                 <hr />
                 <div className={styles.filterSectionWrap}>
                     {config.filters.map((f, _i) =>
-                        <Button
+                        <button
                             key={`button${_i}`}
                             className={filter[config.filterName] === f ? styles.activefilterButton : styles.filterButton}
-                            onClick={() => applyFilter(config.filterName, f)}>{f}</Button>
+                            onClick={() => applyFilter(config.filterName, f)}>{f}</button>
                     )}
                 </div>
             </div>

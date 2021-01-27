@@ -7,13 +7,14 @@
   justify-content: center;
 }
 
-.homeContainer > .titleContainer {
-  padding-bottom: 10px;
-}
 .homeContainer > .homeInnerContainer {
   width: 1044px;
   height: 100%;
   /* width: 100%; */
+}
+
+.homeContainer > .homeInnerContainer > .titleContainer {
+  padding-bottom: 10px;
 }
 
 .homeContainer > .homeInnerContainer > .bodyContainer {

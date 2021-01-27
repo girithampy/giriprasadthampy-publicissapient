@@ -85,7 +85,7 @@ const Filter = (props) => {
 };
 
 Filter.propTypes = {
-  filter: PropTypes.instanceOf(PropTypes.object).isRequired,
+  filter: PropTypes.instanceOf(Object).isRequired,
   onFilterChange: PropTypes.func.isRequired
 };
 

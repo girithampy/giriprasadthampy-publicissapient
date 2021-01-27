@@ -67,21 +67,21 @@ const LaunchItem = (props) => {
 LaunchItem.propTypes = {
   imageURL: PropTypes.string,
   missionName: PropTypes.string,
-  flightNumber: PropTypes.string,
+  flightNumber: PropTypes.number,
   missionIds: PropTypes.instanceOf(Array),
   launchYear: PropTypes.string,
-  launchSuccess: PropTypes.bool,
-  landSuccess: PropTypes.bool
+  launchSuccess: PropTypes.string,
+  landSuccess: PropTypes.string
 };
 
 LaunchItem.defaultProps = {
   imageURL: '',
   missionName: '',
-  flightNumber: '',
+  flightNumber: null,
   missionIds: [],
   launchYear: '',
-  launchSuccess: null,
-  landSuccess: null
+  launchSuccess: '',
+  landSuccess: ''
 };
 
 export default React.memo(LaunchItem);

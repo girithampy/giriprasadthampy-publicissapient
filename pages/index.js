@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-
 import axios from 'axios';
-
-// Components
-// import Head from '../components/head';
-// import Footer from '../components/footer';
-// import Filter from '../components/filter';
-// import LaunchItem from '../components/launch-item';
 
 // styles
 import styles from './../styles/Home.module.css'
@@ -18,7 +11,7 @@ const Footer = dynamic(() => import('../components/footer'));
 const Filter = dynamic(() => import('../components/filter'));
 const LaunchItem = dynamic(() => import('../components/launch-item'));
 
-const limit = 100;
+const pageLimit = 8;
 
 const createQueryString = (query) => (
   Object.keys(query)
@@ -29,15 +22,23 @@ const createQueryString = (query) => (
 export const Home = (props) => {
   const router = useRouter();
 
+  const [pageOffset, setPageOffset] = useState(0);
   const [filter, setFilter] = useState(router.query || {});
   const [flights, setFlights] = useState(props.launches || []);
   const [loading, setLoading] = useState(false);
 
-  const fetchLaunches = async (filter) => {
+  const fetchLaunches = async (filter, offset = 0, type = 'reset') => {
     const qs = createQueryString(filter);
-    setLoading(true)
-    axios.get(`https://api.spaceXdata.com/v3/launches?limit=${limit}&${qs}`).then(res => {
-      setFlights(res.data)
+    setLoading(true);
+    axios.get(`https://api.spaceXdata.com/v3/launches?limit=${pageLimit}&offset=${offset}&${qs}`).then(res => {
+      console.log('pageOffset after', pageOffset)
+      if (type === 'pagination') {
+        setFlights([...flights, ...res.data])
+      } else {
+        setFlights(res.data)
+      }
+      setPageOffset(offset)
+
       setLoading(false)
     }).catch(err => {
       console.log('Error :', err);
@@ -49,9 +50,9 @@ export const Home = (props) => {
     setFilter(filter);
     const qs = createQueryString(filter);
     router.push(`/?${qs}`, undefined, { shallow: true });
+    setFlights([]);
     fetchLaunches(filter);
   }
-
   return (<div className={styles.homeContainer}>
     <div className={styles.homeInnerContainer}>
       <Head title="SpaceX" description="List and browse all launches by SpaceX program." />
@@ -64,7 +65,7 @@ export const Home = (props) => {
           <Filter filter={filter} onFilterChange={onFilterChange} />
         </div>
         <div className={styles.listContainer}>
-          {!loading && flights.map((flight, i) =>
+          {flights.map((flight, i) =>
             <div className={styles.listItemContainer} key={i}>
               <LaunchItem
                 missionName={flight.mission_name}
@@ -76,9 +77,13 @@ export const Home = (props) => {
                 landSuccess={flight.rocket.first_stage.cores[0].land_success === null ? '' : `${flight.rocket.first_stage.cores[0].land_success}`} />
             </div>
           )}
-          {!loading && flights.length === 0 && <div><h4>No Data</h4></div>}
-          {loading && <div className={styles.loaderContainer}><h4>Loading...</h4></div>}
+          {!loading && flights.length === 0 && <div className={styles.messageContainer}><h4>No Data</h4></div>}
+          {loading && <div className={styles.messageContainer}><h4>Loading...</h4></div>}
+          {!loading && flights.length >= pageLimit && <div className={styles.loadMoreContainer}>
+            <button onClick={() => fetchLaunches(filter, (pageOffset + pageLimit), 'pagination')}>Load more</button>
+          </div>}
         </div>
+
       </div>
       <Footer />
     </div>
@@ -88,7 +93,7 @@ export const Home = (props) => {
 Home.getInitialProps = async ({ query }) => {
   const qs = createQueryString(query);
 
-  const response = await axios.get(`https://api.spaceXdata.com/v3/launches?limit=${limit}&${qs}`);
+  const response = await axios.get(`https://api.spaceXdata.com/v3/launches?limit=${pageLimit}&${qs}`);
   return { launches: response.data }
 }
 

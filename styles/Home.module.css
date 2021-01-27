@@ -31,7 +31,9 @@
     flex-wrap: wrap;
 }
 .homeContainer > .homeInnerContainer > .bodyContainer >.listContainer > .listItemContainer {
+    height: calc(500px + 15px);
     width: 100%;
+    padding-bottom: 15px;
 }
 
 .loaderContainer {

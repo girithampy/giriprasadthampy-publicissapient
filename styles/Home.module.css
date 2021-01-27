@@ -36,7 +36,14 @@
     padding-bottom: 15px;
 }
 
-.loaderContainer {
+.messageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.loadMoreContainer {
+    height: 30px;
     width: 100%;
     display: flex;
     justify-content: center;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "npm run lint && next build",
     "start": "next start",
     "lint": "eslint -f table . --ext .ts,.js,.tsx,.jsx",
     "lint-fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",

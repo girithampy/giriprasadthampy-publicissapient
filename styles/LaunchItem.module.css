@@ -1,26 +1,25 @@
 .launchItemContainer {
-    width: 100%;
-    /* height: calc(100% - 15px); */
-    /* height: calc(500px - 15px); */
-    height: 100%;
-    background-color: #ffffff;
-    padding: 15px;
-    margin-bottom: 15px;
-
+  width: 100%;
+  /* height: calc(100% - 15px); */
+  /* height: calc(500px - 15px); */
+  height: 100%;
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 .launchItemContainer > .imageContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.launchItemContainer > .imageContainer > .imageInnerContainer{
-    padding: 5px;
-    background-color: #f2f2f2;
-    max-height: 256px;
-    max-width: 256px;
-    width: 100%;
-    height: 100%;
+.launchItemContainer > .imageContainer > .imageInnerContainer {
+  padding: 5px;
+  background-color: #f2f2f2;
+  max-height: 256px;
+  max-width: 256px;
+  width: 100%;
+  height: 100%;
 }
 /* .launchItemContainer > img {
     height: 200px;
@@ -28,23 +27,23 @@
 } */
 
 .launchItemContainer > .launchItemInfoContainer {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .launchItemName {
-    color: #545d9d;
-    font-weight: 900;
+  color: #545d9d;
+  font-weight: 900;
 }
 .missionIdContainer > label {
-    font-weight: 900;
-    color: #171717;
+  font-weight: 900;
+  color: #171717;
 }
 
 .infoContainer > label {
-    font-weight: 900;
-    color: #171717;
+  font-weight: 900;
+  color: #171717;
 }
 .infoContainer > label > span {
-    font-weight: 400;
-    color: #545d9d;
+  font-weight: 400;
+  color: #545d9d;
 }

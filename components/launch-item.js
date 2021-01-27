@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image'
 
 // styles
 import styles from './../styles/LaunchItem.module.css'
@@ -6,7 +7,13 @@ import styles from './../styles/LaunchItem.module.css'
 const LaunchItem = (props) => {
     const { imageURL, missionName, flightNumber, missionIds = [], launchYear, launchSuccess, landSuccess } = props;
     return (<div className={styles.launchItemContainer}>
-        <img src={imageURL} alt={missionName} />
+        {/* <img src={imageURL} alt={missionName} /> */}
+        <div className={styles.imageContainer}>
+            <div className={styles.imageInnerContainer}>
+                <Image src={imageURL} alt={missionName} height="100%" width="100%" layout="responsive" />
+            </div>
+        </div>
+
         <div className={styles.launchItemInfoContainer}>
             <h6 className={styles.launchItemName}>{missionName} #{flightNumber}</h6>
             <div className={styles.missionIdContainer}>

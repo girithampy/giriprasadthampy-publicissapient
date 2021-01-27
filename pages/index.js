@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
 import axios from 'axios';
 
 // Components
-import Head from '../components/head';
-import Footer from '../components/footer';
-import Filter from '../components/filter';
-import LaunchItem from '../components/launch-item';
+// import Head from '../components/head';
+// import Footer from '../components/footer';
+// import Filter from '../components/filter';
+// import LaunchItem from '../components/launch-item';
 
 // styles
 import styles from './../styles/Home.module.css'
+
+const Head = dynamic(() => import('../components/head'));
+const Footer = dynamic(() => import('../components/footer'));
+const Filter = dynamic(() => import('../components/filter'));
+const LaunchItem = dynamic(() => import('../components/launch-item'));
 
 const limit = 100;
 

@@ -7,10 +7,24 @@
     margin-bottom: 15px;
 
 }
-.launchItemContainer > img {
+.launchItemContainer > .imageContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.launchItemContainer > .imageContainer > .imageInnerContainer{
+    padding: 5px;
+    background-color: #f2f2f2;
+    max-height: 256px;
+    max-width: 256px;
+    width: 100%;
+    height: 100%;
+}
+/* .launchItemContainer > img {
     height: 200px;
     width: 100%;
-}
+} */
 
 .launchItemContainer > .launchItemInfoContainer {
     display: flex;

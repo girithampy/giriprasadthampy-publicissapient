@@ -15,7 +15,7 @@ const LaunchItem = (props) => {
         </div>
 
         <div className={styles.launchItemInfoContainer}>
-            <h6 className={styles.launchItemName}>{missionName} #{flightNumber}</h6>
+            <h4 className={styles.launchItemName}>{missionName} #{flightNumber}</h4>
             <div className={styles.missionIdContainer}>
                 <label>Mission Ids :</label>
                 <ul>

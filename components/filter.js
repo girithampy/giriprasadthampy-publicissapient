@@ -39,11 +39,11 @@ const Filter = (props) => {
     }
     return (<div className={styles.filterContainer}>
         <div>
-            <h3>Filters</h3>
+            <h2>Filters</h2>
         </div>
         {filterConfig.map((config, i) => (
             <div key={i}>
-                <h5>{config.filterTitle}</h5>
+                <h3>{config.filterTitle}</h3>
                 <hr />
                 <div className={styles.filterSectionWrap}>
                     {config.filters.map((f, _i) =>
